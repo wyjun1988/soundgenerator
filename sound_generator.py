@@ -14,15 +14,15 @@ class SoundGenerator:
         self._is_playing = False
 
     def _start_play(self):
-        stream = self.p.open(format=pyaudio.paFloat32,
-                             channels=self.channels,
-                             rate=self.fs,
-                             output=True)
+        stream = self._p.open(format=pyaudio.paFloat32,
+                              channels=self.channels,
+                              rate=self.fs,
+                              output=True)
         self.is_playing = True
         return stream
 
     def _stop_play(self):
-        self.p.terminate()
+        self._p.terminate()
         self.is_playing = False
 
     def beep_sound(self):
