@@ -1,5 +1,6 @@
 import pyaudio
 import numpy as np
+from sample_generator import get_sine_samples
 
 
 class SoundGenerator:
@@ -29,7 +30,7 @@ class SoundGenerator:
         f = 440.0  # sine frequency, Hz, may be float
 
         # generate samples, note conversion to float32 array
-        samples = (np.sin(2 * np.pi * np.arange(self.fs * self.duration) * f / self.fs)).astype(np.float32).tobytes()
+        samples = get_sine_samples(duration=self.duration, sampling_rate=self.fs, frequency=f)
         self.generate_using_samples(samples=samples)
 
     def generate_using_samples(self, samples):
